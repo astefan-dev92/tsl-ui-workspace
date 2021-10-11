@@ -1,0 +1,52 @@
+{
+  "npmScope": "tsl-ui-workspace",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "YTIwZjc5ZWItODYxYS00YzAxLTk0Y2ItYjQzZDkwMjE5OTcxfHJlYWQtd3JpdGU="
+      }
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "projects": {
+    "admin-experience": {
+      "tags": []
+    },
+    "admin-experience-e2e": {
+      "tags": [],
+      "implicitDependencies": ["admin-experience"]
+    },
+    "auth": {
+      "tags": []
+    },
+    "reporting": {
+      "tags": []
+    },
+    "tutor-experience": {
+      "tags": []
+    },
+    "tutor-experience-e2e": {
+      "tags": [],
+      "implicitDependencies": ["tutor-experience"]
+    }
+  }
+}
