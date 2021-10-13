@@ -5,7 +5,7 @@ import { Login } from "@tsl-ui-workspace/auth";
 export function App() {
     return (
         <Box>
-            <p>Hello from the Admin Experience</p>
+            <p>Hello from the Admin Experience - #1</p>
             <Login />
         </Box>
     );
