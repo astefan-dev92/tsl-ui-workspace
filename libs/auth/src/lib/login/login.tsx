@@ -4,7 +4,7 @@ const Login = () => {
 
     return (
         <Box>
-            <p>Login</p>
+            <p>Login - Hello from the Other Side!</p>
         </Box>
     );
 };
