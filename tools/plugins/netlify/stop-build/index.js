@@ -1,6 +1,6 @@
 module.exports = {
     onPreBuild: ({ utils }) => {
-        const currentProject = 'admin-experience';
+        const currentProject = process.env.PROJECT_NAME;
         const lastDeployedCommit = process.env.CACHED_COMMIT_REF;
         const latestCommit = 'HEAD';
 
