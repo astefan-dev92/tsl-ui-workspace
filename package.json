@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "start:admin-local": "cross-env $(cat apps/admin-experience/.env.local | xargs) nx run admin-experience:serve",
-    "build": "nx build",
+    "build:tutor-experience": "nx build tutor-experience",
+    "build:admin-experience": "nx build admin-experience",
     "test": "nx test"
   },
   "private": true,
@@ -30,6 +31,7 @@
     "@nrwl/tao": "12.10.0",
     "@nrwl/web": "12.10.0",
     "@nrwl/workspace": "12.10.0",
+    "@netlify-builder/deploy": "^4.1.2",
     "@testing-library/react": "11.2.6",
     "@testing-library/react-hooks": "7.0.1",
     "@types/jest": "27.0.2",

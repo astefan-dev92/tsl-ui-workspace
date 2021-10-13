@@ -5,6 +5,15 @@
             "root": "apps/admin-experience",
             "sourceRoot": "apps/admin-experience/src",
             "projectType": "application",
+            "architect": {
+                "deploy": {
+                    "builder": "@netlify-builder/deploy:deploy",
+                    "options": {
+                        "outputPath": "dist/apps/admin-experience",
+                        "siteId": "7941b629-b136-495e-8512-244a677355ae"
+                    }
+                }
+            },
             "targets": {
                 "build": {
                     "executor": "@nrwl/web:build",
@@ -163,6 +172,15 @@
             "root": "apps/tutor-experience",
             "sourceRoot": "apps/tutor-experience/src",
             "projectType": "application",
+            "architect": {
+                "deploy": {
+                    "builder": "@netlify-builder/deploy:deploy",
+                    "options": {
+                        "outputPath": "dist/apps/tutor-experience",
+                        "siteId": "bdc75b3f-d36d-4340-9c61-4ded3eb86893"
+                    }
+                }
+            },
             "targets": {
                 "build": {
                     "executor": "@nrwl/web:build",
