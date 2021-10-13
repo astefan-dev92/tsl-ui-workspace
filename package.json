@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start-admin-local": "cross-env $(cat apps/admin-experience/.env.local | xargs) nx run admin-experience:serve",
+    "start:admin-local": "cross-env $(cat apps/admin-experience/.env.local | xargs) nx run admin-experience:serve",
     "build": "nx build",
     "test": "nx test"
   },
