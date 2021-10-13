@@ -1,1 +1,1 @@
-export * from './lib/auth';
+export { default as Login } from './lib/login/login';

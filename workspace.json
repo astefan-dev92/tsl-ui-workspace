@@ -1,278 +1,292 @@
 {
-  "version": 2,
-  "projects": {
-    "admin-experience": {
-      "root": "apps/admin-experience",
-      "sourceRoot": "apps/admin-experience/src",
-      "projectType": "application",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/web:build",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/apps/admin-experience",
-            "index": "apps/admin-experience/src/index.html",
-            "baseHref": "/",
-            "main": "apps/admin-experience/src/main.tsx",
-            "polyfills": "apps/admin-experience/src/polyfills.ts",
-            "tsConfig": "apps/admin-experience/tsconfig.app.json",
-            "assets": [
-              "apps/admin-experience/src/favicon.ico",
-              "apps/admin-experience/src/assets"
-            ],
-            "styles": ["apps/admin-experience/src/styles.scss"],
-            "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/webpack"
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/admin-experience/src/environments/environment.ts",
-                  "with": "apps/admin-experience/src/environments/environment.prod.ts"
+    "version": 2,
+    "projects": {
+        "admin-experience": {
+            "root": "apps/admin-experience",
+            "sourceRoot": "apps/admin-experience/src",
+            "projectType": "application",
+            "targets": {
+                "build": {
+                    "executor": "@nrwl/web:build",
+                    "outputs": ["{options.outputPath}"],
+                    "options": {
+                        "outputPath": "dist/apps/admin-experience",
+                        "index": "apps/admin-experience/src/index.html",
+                        "baseHref": "/",
+                        "main": "apps/admin-experience/src/main.tsx",
+                        "polyfills": "apps/admin-experience/src/polyfills.ts",
+                        "tsConfig": "apps/admin-experience/tsconfig.app.json",
+                        "assets": [
+                            "apps/admin-experience/src/favicon.ico",
+                            "apps/admin-experience/src/assets"
+                        ],
+                        "styles": ["apps/admin-experience/src/styles.scss"],
+                        "scripts": [],
+                        "webpackConfig": "@nrwl/react/plugins/webpack"
+                    },
+                    "configurations": {
+                        "local": {
+                          "executor": "@nrwl/workspace:run-commands",
+                          "options": {
+                              "command": "npx cross-env $(cat apps/admin-experience/.env.development | xargs)"
+                          }
+                        },
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/admin-experience/src/environments/environment.ts",
+                                    "with": "apps/admin-experience/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "500kb",
+                                    "maximumError": "1mb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "executor": "@nrwl/web:dev-server",
+                    "options": {
+                        "buildTarget": "admin-experience:build:local",
+                        "hmr": true
+                    },
+                    "configurations": {
+                        "production": {
+                            "buildTarget": "admin-experience:build:production",
+                            "hmr": false
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "outputs": ["{options.outputFile}"],
+                    "options": {
+                        "lintFilePatterns": [
+                            "apps/admin-experience/**/*.{ts,tsx,js,jsx}"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/admin-experience"],
+                    "options": {
+                        "jestConfig": "apps/admin-experience/jest.config.js",
+                        "passWithNoTests": true
+                    }
                 }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+            }
+        },
+        "admin-experience-e2e": {
+            "root": "apps/admin-experience-e2e",
+            "sourceRoot": "apps/admin-experience-e2e/src",
+            "projectType": "application",
+            "targets": {
+                "e2e": {
+                    "executor": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/admin-experience-e2e/cypress.json",
+                        "devServerTarget": "admin-experience:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "admin-experience:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "outputs": ["{options.outputFile}"],
+                    "options": {
+                        "lintFilePatterns": [
+                            "apps/admin-experience-e2e/**/*.{js,ts}"
+                        ]
+                    }
                 }
-              ]
             }
-          }
         },
-        "serve": {
-          "executor": "@nrwl/web:dev-server",
-          "options": {
-            "buildTarget": "admin-experience:build",
-            "hmr": true
-          },
-          "configurations": {
-            "production": {
-              "buildTarget": "admin-experience:build:production",
-              "hmr": false
-            }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["apps/admin-experience/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/admin-experience"],
-          "options": {
-            "jestConfig": "apps/admin-experience/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "admin-experience-e2e": {
-      "root": "apps/admin-experience-e2e",
-      "sourceRoot": "apps/admin-experience-e2e/src",
-      "projectType": "application",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/admin-experience-e2e/cypress.json",
-            "devServerTarget": "admin-experience:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "admin-experience:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["apps/admin-experience-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "auth": {
-      "root": "libs/auth",
-      "sourceRoot": "libs/auth/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/auth/**/*.ts"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/auth"],
-          "options": {
-            "jestConfig": "libs/auth/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "reporting": {
-      "root": "libs/reporting",
-      "sourceRoot": "libs/reporting/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/reporting/**/*.ts"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/reporting"],
-          "options": {
-            "jestConfig": "libs/reporting/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "tutor-experience": {
-      "root": "apps/tutor-experience",
-      "sourceRoot": "apps/tutor-experience/src",
-      "projectType": "application",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/web:build",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/apps/tutor-experience",
-            "index": "apps/tutor-experience/src/index.html",
-            "baseHref": "/",
-            "main": "apps/tutor-experience/src/main.tsx",
-            "polyfills": "apps/tutor-experience/src/polyfills.ts",
-            "tsConfig": "apps/tutor-experience/tsconfig.app.json",
-            "assets": [
-              "apps/tutor-experience/src/favicon.ico",
-              "apps/tutor-experience/src/assets"
-            ],
-            "styles": ["apps/tutor-experience/src/styles.scss"],
-            "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/webpack"
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/tutor-experience/src/environments/environment.ts",
-                  "with": "apps/tutor-experience/src/environments/environment.prod.ts"
+        "auth": {
+            "root": "libs/auth",
+            "sourceRoot": "libs/auth/src",
+            "projectType": "library",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "outputs": ["{options.outputFile}"],
+                    "options": {
+                        "lintFilePatterns": ["libs/auth/**/*.ts", "libs/auth/**/*.html"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/auth"],
+                    "options": {
+                        "jestConfig": "libs/auth/jest.config.js",
+                        "passWithNoTests": true
+                    }
                 }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+            }
+        },
+        "reporting": {
+            "root": "libs/reporting",
+            "sourceRoot": "libs/reporting/src",
+            "projectType": "library",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "outputs": ["{options.outputFile}"],
+                    "options": {
+                        "lintFilePatterns": ["libs/reporting/**/*.ts"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/reporting"],
+                    "options": {
+                        "jestConfig": "libs/reporting/jest.config.js",
+                        "passWithNoTests": true
+                    }
                 }
-              ]
             }
-          }
         },
-        "serve": {
-          "executor": "@nrwl/web:dev-server",
-          "options": {
-            "buildTarget": "tutor-experience:build",
-            "hmr": true
-          },
-          "configurations": {
-            "production": {
-              "buildTarget": "tutor-experience:build:production",
-              "hmr": false
+        "tutor-experience": {
+            "root": "apps/tutor-experience",
+            "sourceRoot": "apps/tutor-experience/src",
+            "projectType": "application",
+            "targets": {
+                "build": {
+                    "executor": "@nrwl/web:build",
+                    "outputs": ["{options.outputPath}"],
+                    "options": {
+                        "outputPath": "dist/apps/tutor-experience",
+                        "index": "apps/tutor-experience/src/index.html",
+                        "baseHref": "/",
+                        "main": "apps/tutor-experience/src/main.tsx",
+                        "polyfills": "apps/tutor-experience/src/polyfills.ts",
+                        "tsConfig": "apps/tutor-experience/tsconfig.app.json",
+                        "assets": [
+                            "apps/tutor-experience/src/favicon.ico",
+                            "apps/tutor-experience/src/assets"
+                        ],
+                        "styles": ["apps/tutor-experience/src/styles.scss"],
+                        "scripts": [],
+                        "webpackConfig": "@nrwl/react/plugins/webpack"
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/tutor-experience/src/environments/environment.ts",
+                                    "with": "apps/tutor-experience/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "500kb",
+                                    "maximumError": "1mb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "executor": "@nrwl/web:dev-server",
+                    "options": {
+                        "buildTarget": "tutor-experience:build",
+                        "hmr": true
+                    },
+                    "configurations": {
+                        "production": {
+                            "buildTarget": "tutor-experience:build:production",
+                            "hmr": false
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "outputs": ["{options.outputFile}"],
+                    "options": {
+                        "lintFilePatterns": [
+                            "apps/tutor-experience/**/*.{ts,tsx,js,jsx}"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/tutor-experience"],
+                    "options": {
+                        "jestConfig": "apps/tutor-experience/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
             }
-          }
         },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["apps/tutor-experience/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/tutor-experience"],
-          "options": {
-            "jestConfig": "apps/tutor-experience/jest.config.js",
-            "passWithNoTests": true
-          }
+        "tutor-experience-e2e": {
+            "root": "apps/tutor-experience-e2e",
+            "sourceRoot": "apps/tutor-experience-e2e/src",
+            "projectType": "application",
+            "targets": {
+                "e2e": {
+                    "executor": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/tutor-experience-e2e/cypress.json",
+                        "devServerTarget": "tutor-experience:serve",
+                        "tsConfig": "apps/tutor-experience-e2e/tsconfig.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "tutor-experience:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "outputs": ["{options.outputFile}"],
+                    "options": {
+                        "lintFilePatterns": [
+                            "apps/tutor-experience-e2e/**/*.{js,ts}"
+                        ]
+                    }
+                }
+            }
         }
-      }
     },
-    "tutor-experience-e2e": {
-      "root": "apps/tutor-experience-e2e",
-      "sourceRoot": "apps/tutor-experience-e2e/src",
-      "projectType": "application",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/tutor-experience-e2e/cypress.json",
-            "devServerTarget": "tutor-experience:serve",
-            "tsConfig": "apps/tutor-experience-e2e/tsconfig.json"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "tutor-experience:serve:production"
+    "cli": {
+        "defaultCollection": "@nrwl/react"
+    },
+    "generators": {
+        "@nrwl/react": {
+            "application": {
+                "style": "scss",
+                "linter": "eslint",
+                "babel": true
+            },
+            "component": {
+                "style": "scss"
+            },
+            "library": {
+                "style": "scss",
+                "linter": "eslint"
             }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["apps/tutor-experience-e2e/**/*.{js,ts}"]
-          }
         }
-      }
-    }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
-  "generators": {
-    "@nrwl/react": {
-      "application": {
-        "style": "scss",
-        "linter": "eslint",
-        "babel": true
-      },
-      "component": {
-        "style": "scss"
-      },
-      "library": {
-        "style": "scss",
-        "linter": "eslint"
-      }
-    }
-  },
-  "defaultProject": "tutor-experience"
+    },
+    "defaultProject": "tutor-experience"
 }
