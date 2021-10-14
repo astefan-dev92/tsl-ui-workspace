@@ -10,12 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install dependencies
+        working-directory: ./
         run: npm install
       - name: Build
+        working-directory: ./
         run: npm run build:tutor-experience
       - name: Deploy to S3
         uses: Reggionick/s3-deploy@v3.1.1
         with:
-          folder: dist/apps/tutor-experience
+          folder: ./dist/apps/tutor-experience
           bucket: ${{ secrets.S3_BUCKET }}
           dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
