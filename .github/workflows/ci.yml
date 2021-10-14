@@ -20,3 +20,5 @@ jobs:
           folder: ./dist/apps/tutor-experience
           bucket: ${{ secrets.S3_BUCKET }}
           dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+          bucket-region: ${{ secrets.S3_BUCKET_REGION }}
+          invalidation: /
