@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      ROLE_ARN: ${{ secrets.ROLE_ARN }}
     steps:
       - uses: actions/checkout@main
       - name: Install dependencies
