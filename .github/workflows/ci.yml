@@ -8,19 +8,25 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      ROLE_ARN: ${{ secrets.ROLE_ARN }}
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v2
+
       - name: Install dependencies
         run: npm install
+
       - name: Build
         run: npm run build:tutor-experience
-      - name: Deploy to S3
-        uses: Reggionick/s3-deploy@v3.1.1
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          folder: ./dist/apps/tutor-experience
-          bucket: ${{ secrets.S3_BUCKET }}
-          dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
-          bucket-region: ${{ secrets.S3_BUCKET_REGION }}
-          invalidation: /
+          role-to-assume: ${{ secrets.ROLE_ARN }}
+          aws-region: ${{ secrets.S3_BUCKET_REGION }}
+
+      - name: Copy files to the test website
+        run: aws s3 sync . s3://${{ secrets.S3_BUCKET }}
+
+      - name: Invalidate cloudfront
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths /
+
+
