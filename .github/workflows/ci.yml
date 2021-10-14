@@ -20,8 +20,8 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: ${{ secrets.ROLE_ARN }}
-          aws-region: ${{ secrets.S3_BUCKET_REGION }}
+          role-to-assume: arn:aws:iam::267739230747:role/nonprod-deployer
+          aws-region: eu-west-1
 
       - name: Copy files to the test website
         run: aws s3 sync . s3://${{ secrets.S3_BUCKET }}
