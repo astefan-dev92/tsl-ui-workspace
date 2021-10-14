@@ -9,11 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@main
       - name: Install dependencies
-        uses: actions/checkout@main
         run: npm install
       - name: Build
-        uses: actions/checkout@main
         run: npm run build:tutor-experience
       - name: Deploy to S3
         uses: Reggionick/s3-deploy@v3.1.1
