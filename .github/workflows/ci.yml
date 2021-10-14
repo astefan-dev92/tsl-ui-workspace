@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install dependencies
-        working-directory: ./
+        working-directory: ../
         run: npm install
       - name: Build
-        working-directory: ./
+        working-directory: ../
         run: npm run build:tutor-experience
       - name: Deploy to S3
         uses: Reggionick/s3-deploy@v3.1.1
