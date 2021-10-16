@@ -33,6 +33,6 @@ COPY --from=dependencies --chown=app /package-lock.json ./package-lock.json
 # Copy the source code
 COPY --chown=app . ./
 
-EXPOSE 4200
+EXPOSE ${PORT}
 
 CMD ["bin/entrypoint"]

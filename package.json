@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "start:admin-local": "cross-env $(cat apps/admin-experience/.env.local | xargs) nx run admin-experience:serve",
-    "start:dev": "nx run admin-experience:serve --host=0.0.0.0",
+    "start:tutor-dev": "nx run tutor-experience:serve --host=0.0.0.0 --port 4201",
+    "start:admin-dev": "nx run admin-experience:serve --host=0.0.0.0 --port 4202",
     "build:tutor-experience": "nx build tutor-experience",
     "build:admin-experience": "nx build admin-experience",
     "test": "nx test"

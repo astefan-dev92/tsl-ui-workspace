@@ -10,5 +10,5 @@ fi
 echo "env: ${NODE_ENV}"
 if [ $NODE_ENV=='development' ]; then
   echo "Starting dev..."
-  npm run start:dev
+  npm run ${SCRIPT}
 fi

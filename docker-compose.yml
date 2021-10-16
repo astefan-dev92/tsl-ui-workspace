@@ -1,12 +1,23 @@
 version: "3"
 
 services:
+  tutor-experience:
+    container_name: TutorExperience
+    build: .
+    ports:
+      - 4201:4201
+    env_file:
+      - .env
+    environment:
+      - PORT=4201
+      - SCRIPT=start:tutor-dev
   admin-experience:
     container_name: AdminExperience
     build: .
     ports:
-      - 4200:4200
+      - 4202:4202
     env_file:
       - .env
     environment:
-      - APP=admin_experience
+      - PORT=4202
+      - SCRIPT=start:admin-dev
