@@ -13,7 +13,7 @@ export function App() {
     <div className={styles.app}>
       <header className="flex">
         <Logo width="75" height="75"/>
-        <h1>Welcome to student-app deployed with the help of Netlify, Ay!</h1>
+        <h1>Welcome to student-app deployed with the help of Netlify!</h1>
       </header>
     <main>
       <h2>Resources &amp; Tools</h2>
