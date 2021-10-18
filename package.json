@@ -23,6 +23,7 @@
     "tslib": "^2.0.0"
   },
   "devDependencies": {
+    "@netlify-builder/deploy": "^4.1.2",
     "@nrwl/cli": "12.10.0",
     "@nrwl/cypress": "12.10.0",
     "@nrwl/eslint-plugin-nx": "12.10.0",
@@ -33,7 +34,6 @@
     "@nrwl/tao": "12.10.0",
     "@nrwl/web": "12.10.0",
     "@nrwl/workspace": "12.10.0",
-    "@netlify-builder/deploy": "^4.1.2",
     "@testing-library/react": "11.2.6",
     "@testing-library/react-hooks": "7.0.1",
     "@types/jest": "27.0.2",
@@ -46,6 +46,7 @@
     "babel-jest": "27.2.3",
     "cross-env": "^7.0.3",
     "cypress": "^8.3.0",
+    "dep-graph": "^1.1.0",
     "eslint": "7.22.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
