@@ -21,6 +21,8 @@ const hasProjectChanged = (currentProject, fromHash, toHash) => {
     
     const changedProjects = JSON.parse(output).projects;
 
+    console.log(changedProjects);
+
     if (changedProjects.find((project) => project === currentProject)) {
         return true;
     }
