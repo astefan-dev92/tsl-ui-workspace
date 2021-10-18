@@ -14,7 +14,12 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
         "accessToken": "YTIwZjc5ZWItODYxYS00YzAxLTk0Y2ItYjQzZDkwMjE5OTcxfHJlYWQtd3JpdGU="
       }
     }
@@ -33,7 +38,9 @@
     },
     "admin-experience-e2e": {
       "tags": [],
-      "implicitDependencies": ["admin-experience"]
+      "implicitDependencies": [
+        "admin-experience"
+      ]
     },
     "auth": {
       "tags": []
@@ -41,12 +48,23 @@
     "reporting": {
       "tags": []
     },
+    "student-app": {
+      "tags": []
+    },
+    "student-app-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "student-app"
+      ]
+    },
     "tutor-experience": {
       "tags": []
     },
     "tutor-experience-e2e": {
       "tags": [],
-      "implicitDependencies": ["tutor-experience"]
+      "implicitDependencies": [
+        "tutor-experience"
+      ]
     }
   }
 }

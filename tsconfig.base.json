@@ -10,14 +10,24 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@tsl-ui-workspace/auth": ["libs/auth/src/index.ts"],
-      "@tsl-ui-workspace/reporting": ["libs/reporting/src/index.ts"]
+      "@tsl-ui-workspace/auth": [
+        "libs/auth/src/index.ts"
+      ],
+      "@tsl-ui-workspace/reporting": [
+        "libs/reporting/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }
