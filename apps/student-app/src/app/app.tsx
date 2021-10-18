@@ -111,7 +111,7 @@ nx affected:e2e
       path="/page-2"
       exact
       render={() => (
-        <div><Link to="/">Click here to go back to root page.</Link></div>
+        <div><Link to="/">Click here to go back to root page - 2.</Link></div>
       )}
     />
     {/* END: routes */}
