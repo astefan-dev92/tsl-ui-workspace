@@ -8,7 +8,7 @@ module.exports = {
 
         if (!changed) {
             utils.build.cancelBuild(
-                `Build was cancelled because ${currentProject} was not affect by the latest changes`
+                `Build was cancelled because ${currentProject} was not affected by the latest changes`
             );
         }
     }
