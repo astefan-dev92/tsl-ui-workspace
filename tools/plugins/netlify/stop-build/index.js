@@ -17,11 +17,13 @@ module.exports = {
 
 const hasProjectChanged = (currentProject, fromHash, toHash) => {
     const execSync = require('child_process').execSync;
+
+    const getAffectedOnMain = `nx print-affected --base=main~1 --head=main`;
     const getAffected = `nx print-affected --base=${fromHash} --head=${toHash}`;
-    const output = execSync(getAffected).toString();
+    const output = execSync(getAffectedOnMain).toString();
     
     const changedProjects = JSON.parse(output).projects;
-
+    console.log(changedProjects);
     if (changedProjects.find((project) => project === currentProject)) {
         return true;
     }
