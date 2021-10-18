@@ -4,6 +4,7 @@ module.exports = {
         const lastDeployedCommit = process.env.CACHED_COMMIT_REF;
         const latestCommit = 'HEAD';
 
+        console.log(process.env.CACHED_COMMIT_REF);
         const changed = hasProjectChanged(currentProject, lastDeployedCommit, latestCommit);
 
         if (!changed) {
@@ -20,8 +21,6 @@ const hasProjectChanged = (currentProject, fromHash, toHash) => {
     const output = execSync(getAffected).toString();
     
     const changedProjects = JSON.parse(output).projects;
-
-    console.log(changedProjects);
 
     if (changedProjects.find((project) => project === currentProject)) {
         return true;
