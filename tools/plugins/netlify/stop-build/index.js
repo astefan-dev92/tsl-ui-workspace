@@ -19,8 +19,8 @@ const hasProjectChanged = (currentProject, fromHash, toHash) => {
     const execSync = require('child_process').execSync;
 
     const getAffectedOnMain = `nx print-affected --base=main~1 --head=main`;
-    const getAffected = `nx print-affected --base=${fromHash} --head=${toHash}`;
-    const output = execSync(getAffectedOnMain).toString();
+    const getAffected = `nx print-affected --base=main --head=HEAD`;
+    const output = execSync(getAffected).toString();
     
     const changedProjects = JSON.parse(output).projects;
     console.log(changedProjects);

@@ -1,0 +1,34 @@
+version: 1
+applications: 
+  - appRoot: apps/tutor-experience
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - npm install
+        build:
+          commands:
+            - npm run build:tutor-experience
+      artifacts:
+        baseDirectory: ../../dist/apps/tutor-experience
+        files:
+          - '**/*'
+      cache:
+        paths: 
+            - node_modules/**/*
+  - appRoot: apps/admins-experience
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - npm install
+        build:
+          commands:
+            - npm run build:admin-experience
+      artifacts:
+        baseDirectory: ../../dist/apps/admin-experience
+        files:
+          - '**/*'
+      cache:
+        paths: 
+            - node_modules/**/*
